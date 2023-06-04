@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    #instacapt_header {
+        font-family: 'Billabong', sans-serif;
+    }
+}
+
+                                                

@@ -9,6 +9,7 @@ import {
   RedirectToSignIn,
 } from "@clerk/nextjs";
 import { useRouter } from "next/router";
+import Navbar from "~/components/navbar";
 
 const publicPages = ["/sign-in/[[...index]]", "/sign-up/[[...index]]", "/"];
 
@@ -23,8 +24,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   // Otherwise, use Clerk to require authentication
   return (
     <ClerkProvider {...pageProps}>
+      <Navbar />
       {isPublicPage ? (
-        <Component {...pageProps} />
+          <Component {...pageProps} />
       ) : (
         <>
           <SignedIn>
