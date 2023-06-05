@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-    #instacapt_header {
-        font-family: 'Billabong', sans-serif;
-    }
+  #instacapt_header {
+    font-family: 'Billabong', sans-serif;
+  }
 }
 
 body {
-    @apply bg-black text-slate-100;
+  @apply bg-white text-gray-800; /* Change the background color to Instagram's light off-white color */
 }

@@ -13,8 +13,16 @@ import { useRouter } from 'next/router'
 import { api } from '~/utils/api'
 
 import Navbar from '~/components/navbar'
+import Footer from '~/components/footer'
 
-const publicPages = ['/sign-in/[[...index]]', '/sign-up/[[...index]]', '/']
+const publicPages = [
+  '/sign-in/[[...index]]',
+  '/sign-up/[[...index]]',
+  '/',
+  '/pricing',
+  '/404',
+  '/faq',
+]
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   // Get the pathname
@@ -54,6 +62,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           </SignedOut>
         </>
       )}
+
+      <Footer />
     </ClerkProvider>
   )
 }

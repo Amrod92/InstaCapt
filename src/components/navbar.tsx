@@ -1,6 +1,7 @@
 import { type NextPage } from 'next'
 import { UserButton, useUser } from '@clerk/nextjs'
 import { SignInButton } from '@clerk/nextjs'
+import Link from 'next/link'
 
 const Navbar: NextPage = () => {
   const user = useUser()
@@ -8,12 +9,14 @@ const Navbar: NextPage = () => {
   return (
     <nav className="flex flex-wrap items-center justify-around bg-white p-6 shadow-md">
       <div className="mr-6 flex flex-shrink-0 cursor-pointer items-center text-gray-800">
-        <h1
-          id="instacapt_header"
-          className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-4xl font-semibold text-transparent"
-        >
-          InstaCapt
-        </h1>
+        <Link href="/">
+          <h1
+            id="instacapt_header"
+            className="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-4xl font-semibold text-transparent"
+          >
+            InstaCapt
+          </h1>
+        </Link>
       </div>
       <div className="mr-32 w-64 text-sm">
         <ul
@@ -48,19 +51,19 @@ const Navbar: NextPage = () => {
             </svg>
           </div>
           <li className="text-primary p-3 text-sm font-medium hover:bg-slate-300 dark:hover:bg-slate-800 sm:p-0 sm:hover:bg-transparent">
-            <a href="#" className="dark:text-black">
+            <Link href="/" className="dark:text-black">
               Home
-            </a>
+            </Link>
           </li>
           <li className="hover:text-primary cursor-pointer p-3 text-sm font-medium text-gray-600 transition-colors hover:bg-slate-300 dark:hover:bg-slate-800 sm:p-0 sm:hover:bg-transparent">
-            <a href="#" className="dark:text-black">
+            <Link href="#" className="dark:text-black">
               How it works
-            </a>
+            </Link>
           </li>
           <li className="hover:text-primary cursor-pointer p-3 text-sm font-medium text-gray-600 transition-colors hover:bg-slate-300 dark:hover:bg-slate-800 sm:p-0 sm:hover:bg-transparent">
-            <a href="#" className="dark:text-black">
+            <Link href="/pricing" className="dark:text-black">
               Pricing
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
