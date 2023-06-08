@@ -1,11 +1,17 @@
-import type { PropsWithChildren } from 'react'
+import { type PropsWithChildren } from 'react'
 
-export const PageLayout = (props: PropsWithChildren) => {
+type PageLayoutProps = PropsWithChildren<{
+  className?: string
+}>
+
+export const PageLayout = (props: PageLayoutProps) => {
   return (
-    <main className="flex h-screen justify-around">
-      <div className="w-full border-x border-slate-400 md:max-w-2xl">
-        {props.children}
-      </div>
-    </main>
+    <div
+      className={`container mx-auto p-8 xl:px-0 ${
+        props.className ? props.className : ''
+      }`}
+    >
+      {props.children}
+    </div>
   )
 }

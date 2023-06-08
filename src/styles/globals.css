@@ -9,5 +9,5 @@
 }
 
 body {
-  @apply bg-white text-gray-800; /* Change the background color to Instagram's light off-white color */
+  @apply dark:bg-zinc-900 text-gray-800; /* Change the background color to Instagram's light off-white color */
 }

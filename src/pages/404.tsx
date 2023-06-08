@@ -9,10 +9,10 @@ const Custom404: NextPage = () => {
         <div className="relative">
           <div className="absolute">
             <div className="">
-              <h1 className="my-2 text-2xl font-bold text-gray-800">
+              <h1 className="my-2 text-2xl font-bold text-gray-800 dark:text-gray-300">
                 Looks like you have found the doorway to the great nothing
               </h1>
-              <p className="my-2 text-gray-800">
+              <p className="my-2 text-gray-800 dark:text-gray-300">
                 Sorry about that! Please visit our hompage to get where you need
                 to go.
               </p>

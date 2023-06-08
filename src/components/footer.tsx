@@ -5,7 +5,10 @@ import { CurrentYear } from '~/utils/utils'
 
 const Footer: NextPage = () => {
   return (
-    <footer className="bg-gradient-to-r from-gray-100 via-[#bce1ff] to-gray-100">
+    <footer
+      className="bg-gradient-to-r from-gray-100 via-[#bce1ff] to-gray-100 dark:from-gray-800 dark:via-gray-900 dark:to-gray-900
+    "
+    >
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
@@ -15,7 +18,7 @@ const Footer: NextPage = () => {
             >
               InstaCapt
             </h1>
-            <p className="mt-4 max-w-xs text-sm text-gray-600">
+            <p className="mt-4 max-w-xs text-sm text-gray-600 dark:text-gray-500">
               Enhance your images. Get captions and hashtags instantly.
             </p>
             <div className="mt-8 flex space-x-6 text-gray-600">
@@ -119,8 +122,8 @@ const Footer: NextPage = () => {
           </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
             <div>
-              <p className="font-medium">Company</p>
-              <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
+              <p className="font-medium dark:text-gray-500">Company</p>
+              <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500 dark:text-white">
                 <a className="hover:opacity-75" href="#">
                   {' '}
                   About{' '}
@@ -128,43 +131,43 @@ const Footer: NextPage = () => {
               </nav>
             </div>
             <div>
-              <p className="font-medium">Services</p>
+              <p className="font-medium dark:text-gray-500">Services</p>
               <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
-                <a className="hover:opacity-75" href="#">
+                <a className="hover:opacity-75 dark:text-white" href="#">
                   {' '}
                   Upcoming{' '}
                 </a>
-                <a className="hover:opacity-75" href="#">
+                <a className="hover:opacity-75 dark:text-white" href="#">
                   {' '}
                   Upcoming{' '}
                 </a>
               </nav>
             </div>
             <div>
-              <p className="font-medium">Helpful Links</p>
+              <p className="font-medium dark:text-gray-500">Helpful Links</p>
               <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
-                <a className="hover:opacity-75" href="#">
+                <a className="hover:opacity-75 dark:text-white" href="#">
                   {' '}
                   Contact{' '}
                 </a>
-                <Link className="hover:opacity-75" href="/faq">
+                <Link className="hover:opacity-75 dark:text-white" href="/faq">
                   {' '}
                   FAQs{' '}
                 </Link>
               </nav>
             </div>
             <div>
-              <p className="font-medium">Legal</p>
+              <p className="font-medium dark:text-gray-500">Legal</p>
               <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
-                <a className="hover:opacity-75" href="#">
+                <a className="hover:opacity-75 dark:text-white" href="#">
                   {' '}
                   Privacy Policy{' '}
                 </a>
-                <a className="hover:opacity-75" href="#">
+                <a className="hover:opacity-75 dark:text-white" href="#">
                   {' '}
                   Terms &amp; Conditions{' '}
                 </a>
-                <a className="hover:opacity-75" href="#">
+                <a className="hover:opacity-75 dark:text-white" href="#">
                   {' '}
                   Refund Policy{' '}
                 </a>
@@ -172,7 +175,7 @@ const Footer: NextPage = () => {
             </div>
           </div>
         </div>
-        <p className="mt-8 text-xs text-gray-800">
+        <p className="mt-8 text-xs text-gray-800 dark:text-gray-500">
           © {`${CurrentYear()}`} InstaCapt
         </p>
       </div>
