@@ -28,6 +28,6 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs"
-  ],
+, "src/server/api/routers/openai-config.js"  ],
   "exclude": ["node_modules"]
 }

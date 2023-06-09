@@ -52,6 +52,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
             rel="stylesheet"
             href="https://cdn.tailgrids.com/tailgrids-fallback.css"
           />
+          <link
+            rel="stylesheet"
+            href="https://unpkg.com/flowbite@1.4.4/dist/flowbite.min.css"
+          />
         </Head>
         <Navbar />
 

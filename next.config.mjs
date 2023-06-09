@@ -9,7 +9,7 @@ const config = {
   reactStrictMode: true,
 
   images: {
-    domains: ['localhost', 'i.ibb.co'],
+    domains: ['localhost', 'i.ibb.co', "images.unsplash.com"],
   },
 
   /**
