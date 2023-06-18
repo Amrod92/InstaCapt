@@ -1,4 +1,5 @@
 import { exampleRouter } from "~/server/api/routers/example";
+import { visionRouter } from "./routers/image-analysis";
 import { createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -8,6 +9,7 @@ import { createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   example: exampleRouter,
+  visionLearning: visionRouter
 });
 
 // export type definition of API

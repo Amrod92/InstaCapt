@@ -1,24 +1,47 @@
 import { useState } from 'react'
 
-const UploadComponent: React.FC<{ onFilesChange: (files: File[]) => void }> = ({
+interface UploadComponentProps {
+  onFilesChange: (files: File[]) => void
+  mutateOnUpload: (data: { input: string }) => Promise<string> | void
+}
+
+const UploadComponent: React.FC<UploadComponentProps> = ({
   onFilesChange,
+  mutateOnUpload,
 }) => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string>('')
 
-  const handleFileInputChange = (
+  const handleFileInputChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const files = event.target.files
+  ): Promise<void> => {
+    const { files } = event.target
     if (files) {
       const filesArray = Array.from(files)
       setSelectedFiles(filesArray)
       onFilesChange(filesArray)
+
+      const filesAsString = filesArray.map((file) => file.name).join(', ')
+      console.log('this is type: ', typeof filesAsString)
+      setIsLoading(true)
+      setError('')
+
+      try {
+        await mutateOnUpload({
+          input: JSON.stringify({ input: filesAsString }),
+        })
+      } catch (error) {
+        setError('An error occurred during upload.')
+      }
+
+      setIsLoading(false)
     }
   }
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault()
-    const files = event.dataTransfer.files
+    const { files } = event.dataTransfer
     if (files) {
       const filesArray = Array.from(files)
       setSelectedFiles(filesArray)
@@ -61,7 +84,7 @@ const UploadComponent: React.FC<{ onFilesChange: (files: File[]) => void }> = ({
               drop
             </p>
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              SVG, PNG, JPG or GIF (MAX. 800x400px)
+              SVG, PNG, JPG, or GIF (MAX. 800x400px)
             </p>
           </div>
           <input
@@ -73,6 +96,8 @@ const UploadComponent: React.FC<{ onFilesChange: (files: File[]) => void }> = ({
           />
         </label>
       </div>
+      {isLoading && <div>Loading...</div>}
+      {error && <div>Error: {error}</div>}
     </div>
   )
 }
