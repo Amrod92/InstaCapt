@@ -1,26 +1,60 @@
 import { type NextPage } from 'next'
 import { useState } from 'react'
-import UploadComponent from '~/components/upload'
-import imageContainer from '~/components/imageContainer'
+import { Uploader } from 'uploader'
+import { UploadDropzone } from 'react-uploader'
 import Image from 'next/image'
 
-const CreatorPage: NextPage = () => {
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([])
+// Get production API keys from Upload.io
+const uploader = Uploader({
+  apiKey: 'free',
+})
 
-  const handleFilesChange = (files: File[]) => {
-    setSelectedFiles(files)
-    console.log(files)
-  }
+// Customize the dropzone UI (see "customization"):
+const options = {
+  multi: false,
+
+  // Comment out this line & use 'onUpdate' instead of
+  // 'onComplete' to have the dropzone close after upload.
+  showFinishButton: true,
+
+  styles: {
+    colors: {
+      primary: '#377dff',
+    },
+  },
+}
+
+const CreatorPage: NextPage = () => {
+  const [selectedFiles, setSelectedFiles] = useState<string[]>([])
+
+  console.log('This is select: ', selectedFiles[0])
 
   return (
     <>
-      <UploadComponent onFilesChange={handleFilesChange} />
+      {selectedFiles.length == 0 ? (
+        <UploadDropzone
+          uploader={uploader} // Required.
+          options={options} // Optional.
+          width="600px" // Optional.
+          height="375px" // Optional.
+          onUpdate={(files) => {
+            // Optional.
+            if (files.length === 0) {
+              console.log('No files selected.')
+            } else {
+              console.log('Files uploaded:')
+              console.log(files.map((f) => f.fileUrl))
+              const imageURL = files.map((f) => f.fileUrl)
 
-      <div>
-        <div className="m-5 flex items-center justify-center">
-          <div className="grid grid-cols-3 gap-16">
-            {selectedFiles.map((file, index) => (
-              <div className="w-96 border border-gray-300 bg-white" key={index}>
+              setSelectedFiles(imageURL)
+            }
+          }}
+        />
+      ) : (
+        <div>
+          <div className="m-5 flex items-center justify-center">
+            <div className="grid grid-cols-3 gap-16">
+              <div className="w-96 border border-gray-300 bg-white">
                 <header className="grid grid-cols-6 items-center border-b border-b-gray-300 p-3">
                   <div>
                     <img
@@ -42,9 +76,9 @@ const CreatorPage: NextPage = () => {
                       stroke="currentColor"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
                       />
                     </svg>
@@ -53,8 +87,8 @@ const CreatorPage: NextPage = () => {
 
                 <Image
                   className="mx-auto mb-3 shadow-lg"
-                  src={URL.createObjectURL(file)}
-                  alt={file.name}
+                  src={selectedFiles[0] ?? ''}
+                  alt={'lol'}
                   width={500}
                   height={500}
                 />
@@ -69,9 +103,9 @@ const CreatorPage: NextPage = () => {
                       stroke="currentColor"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                       />
                     </svg>
@@ -84,9 +118,9 @@ const CreatorPage: NextPage = () => {
                       stroke="currentColor"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
                       />
                     </svg>
@@ -99,9 +133,9 @@ const CreatorPage: NextPage = () => {
                       stroke="currentColor"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                       />
                     </svg>
@@ -114,9 +148,9 @@ const CreatorPage: NextPage = () => {
                       stroke="currentColor"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
                       />
                     </svg>
@@ -141,10 +175,10 @@ const CreatorPage: NextPage = () => {
 
                 <footer></footer>
               </div>
-            ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   )
 }
